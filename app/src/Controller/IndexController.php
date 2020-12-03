@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Service\TestService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,10 +15,12 @@ use Symfony\Component\HttpFoundation\Response;
 class IndexController extends Controller
 {
     /**
+     * @param TestService $testService
+     *
      * @return Response
      */
-    public function test(): Response
+    public function test(TestService $testService): Response
     {
-        return new JsonResponse(['message' => "ok"]);
+        return new JsonResponse(['message' => $testService->test()]);
     }
 }
